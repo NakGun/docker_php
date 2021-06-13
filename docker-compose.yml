@@ -26,7 +26,7 @@ services:
       # nginx 설정과 같이 Host OS 의 /Users/thruthesky/www/docker 를 Guest OS 의 /docker 로 연결
       - .:/docker
       # Host OS 의 /Users/thruthesky/www/docker/etc/php.ini 를 Guest OS 의 /user/local/etc/php/php.ini 로 연결
-      - ./etc/php.ini:/usr/local/etc/php/php.ini
+      #- ./etc/php.ini:/usr/local/etc/php/php.ini
 
   # MariaDB 설정
   # 주의: 각종 계정이나 루트 비번을 설정하면, DB 에 기록된다. 그래서 나중에 다시 변경하려면 DB 에서 변경을 해야 한다.
@@ -51,13 +51,14 @@ services:
     # DB 포트 연결
     ports:
       - "3306:3306"
-
+      
   phpmyadmin:
     image: phpmyadmin
+    container_name: myadmin
     environment:
       - PMA_HOST=mariadb
     ports:
       - 33060:80
-      
-volumes:
-  mysqldata: {}
+         
+# volumes:
+#   mysqldata: {}
